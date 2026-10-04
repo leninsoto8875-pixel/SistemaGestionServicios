@@ -1,0 +1,53 @@
+﻿@model List<Dominio.Entidades.Equipo>
+
+@{
+    ViewData["Title"] = "Equipos";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Equipos registrados</h2>
+
+        <a asp-controller="Equipos"
+           asp-action="Crear"
+           class="btn btn-primary">
+            Nuevo equipo
+        </a>
+    </div>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Mensaje"]
+        </div>
+    }
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente ID</th>
+                <th>Tipo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serie</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var equipo in Model)
+            {
+                <tr>
+                    <td>@equipo.IdEquipo</td>
+                    <td>@equipo.IdCliente</td>
+                    <td>@equipo.Tipo</td>
+                    <td>@equipo.Marca</td>
+                    <td>@equipo.Modelo</td>
+                    <td>@equipo.NumeroSerie</td>
+                    <td>@equipo.Descripcion</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

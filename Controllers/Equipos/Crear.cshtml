@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Registrar equipo";
+}
+
+<div class="container mt-4">
+
+    <h2>Registrar equipo</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Error
+        </div>
+    }
+
+    <form asp-controller="Equipos"
+          asp-action="Crear"
+          method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Cliente</label>
+
+            <select name="idCliente" class="form-select">
+                <option value="">Seleccione un cliente</option>
+
+                @foreach (var cliente in ViewBag.Clientes)
+                {
+                    <option value="@cliente.IdCliente">
+                        @cliente.Nombre
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tipo de equipo</label>
+            <select name="tipo" class="form-select">
+                <option value="">Seleccione</option>
+                <option value="Laptop">Laptop</option>
+                <option value="PC Escritorio">PC Escritorio</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Marca</label>
+            <input name="marca" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Modelo</label>
+            <input name="modelo" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Número de serie</label>
+            <input name="numeroSerie" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea name="descripcion"
+                      class="form-control"
+                      rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Guardar equipo
+        </button>
+
+        <a asp-controller="Equipos"
+           asp-action="Index"
+           class="btn btn-secondary">
+            Cancelar
+        </a>
+
+    </form>
+</div>
